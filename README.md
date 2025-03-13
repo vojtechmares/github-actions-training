@@ -889,15 +889,49 @@ Actions can be created in three ways:
 
     The Action can be in any directory inside a repository, but the filename must always be `action.yml`.
 
+    Such action is also called "shell action".
+
     Example:
 
     ```yaml
     # action.yaml
+    name: 'Ship package'
+    description: 'Ships package to release server'
+
+    branding:
+      color: green
+      icon: package
+
+    inputs:
+      package-name:  # id of input
+        required: true
+        type: string
+
+    outputs:
+     url:
+       description: "Package URL"
+       value: ${{ steps.upload.outputs.URL }}
+
+    runs:
+      steps:
+        - name: Prepare package
+          run: echo "Preparing package..."
+          shell: bash
+
+        - name: Upload package
+          id: upload
+          run: |
+            echo "Uploading package..."
+            # Upload with cURL for example
+            echo "Package uploaded"
+            echo "URL=some-url-from-upload" >> $GITHUB_OUTPUT
     ```
 
 - **Docker**: Docker action is the second simplest, but requires Docker engine to run, which may be troublesome with self-hosted runners, since Docker engine requires elevated privileges.
 
     For example running such Actions on Kubernetes is especially troublesome because of the privileged containers, which is usually not allowed by the security team.
+
+    Such action is also called "docker action".
 
 - **JavaScript**: The last option is to write JavaScript code using the [Actions toolkit](https://github.com/actions/toolkit) which is a collection of multiple npm packages.
 
@@ -906,6 +940,47 @@ Actions can be created in three ways:
 Composite actions allow you to collect a series of workflow job steps into a single action which you can then run as a single job step in multiple workflows.
 
 In your workflow you reference only one action in one step, but the action itself is made of multiple steps.
+
+```yaml
+# action.yml
+name: 'Hello World'
+description: 'Greet someone'
+
+inputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set Greeting
+      run: echo "Hello $INPUT_WHO_TO_GREET."
+      shell: bash
+      env:
+        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+    - name: Random Number Generator
+      id: random-number-generator
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+
+    - name: Run goodbye.sh
+      run: goodbye.sh
+      shell: bash
+```
 
 ## Linting
 
