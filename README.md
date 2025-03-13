@@ -1037,6 +1037,17 @@ For more information, see Renovate docs: [Automated Dependency Updates for GitHu
 
 GitHub Actions as a feature is available on the Enterprise Server, but in order to use GitHub.com actions, you have to setup GitHub Connect. That your Enterprise Sever can browse and use actions published on GitHub.com. If not, you are left to write actions on your own.
 
+## Best practices
+
+- Use reusable workflows, to keep your workflows [DRY](https://en.wikipedia.org/wiki/Don't_repeat_yourself), see [Reusable workflows](#reusable-workflows)
+- Reference at least major versions of actions (using the `@v4`) to ensure stability
+- Use Renovate or Dependabot to keep your actions up-to-date, see [Keeping actions up to date](#keeping-actions-up-to-date)
+- Use least-privileged `GITHUB_TOKEN` secret: do not add unnecessary permissions to it, see [Permissions](#permissions) and [GitHub token `secrets.GITHUB_TOKEN`](#github-token-secretsgithub_token)
+- Use workflows for other operations like labeling issues and pull requests
+- Lint your workflows to avoid mistakes, see [Linting](#linting)
+- Test your workflows locally first, before pushing, see [Running workflows locally](#running-workflows-locally)
+- Name your steps for improved readability and easier debugging
+
 ## Thank you! & Questions?
 
 That's all, thank you for your attention.
