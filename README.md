@@ -132,6 +132,22 @@ Or see and use [`.vscode/extensions.json`](/.vscode/extensions.json).
 
 ## Writing workflows
 
+### Simple workflow
+
+```yaml
+name: Simple workflow
+
+on: [push]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say hello
+        run: echo "Hello, world!"
+```
+
 ### Jobs
 
 Each job is executed on a single runner. If your job is running in GitHub managed runners, each runner runs exactly one job, and the runner virtual machine is removed after the job is finished.
