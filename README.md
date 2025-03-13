@@ -1043,6 +1043,31 @@ For testing Workflows, you do not have many options. Either run them locally via
 
 [github.com/nektos/act](https://github.com/nektos/act) is an open-source and lightweight program that can run your Workflows locally. Which tremendously simplifies testing. Instead of hacking the workflow triggers and waiting for it to finish, run the workflows locally without commit spam in the repository.
 
+> `act` depends on `docker` (exactly Docker Engine API) to run workflows in containers. As long you don't require container isolation, you can run selected (e.g. windows or macOS) jobs directly on your System, see [Runners](https://nektosact.com/usage/runners.html). In the latter case you don't need to have docker installed or running.
+
+**Install on macOS**:
+
+```bash
+brew install act
+```
+
+**Install on Windows**:
+
+```cmd
+# chocolatey
+choco install act-cli
+
+# scoop
+scoop install act
+
+# winget
+winget install nektos.act
+```
+
+**Install on Linux**:
+
+Or download prebuilt binaries from the [Install page](https://nektosact.com/installation/index.html#manual-download-of-prebuilt-executable).
+
 ## Keeping actions up to date
 
 To keep your actions and workflows up to date, consider using something like [Dependabot](https://github.com/dependabot) or [Renovate](https://docs.renovatebot.com/) to automatically receive Pull requests to update your actions/workflows.
