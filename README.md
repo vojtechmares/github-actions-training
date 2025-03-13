@@ -132,6 +132,42 @@ Or see and use [`.vscode/extensions.json`](/.vscode/extensions.json).
 
 ## Writing workflows
 
+### Jobs
+
+Each job is executed on a single runner. If your job is running in GitHub managed runners, each runner runs exactly one job, and the runner virtual machine is removed after the job is finished.
+
+### Steps
+
+Step can either execute a shell script in given shell, which you must specify. Pr use an existing action and supply its inputs, if it has any.
+
+```yaml
+jobs:
+  my-job:
+    # ...
+    steps:
+      - name: First step # name is optional
+        shell: bash # bash, sh, pwsh, python, cmd
+        run: |
+          echo "Hello everyone from bash"
+
+      - name: Second step with powershell
+        shell: pwsh
+        run: |
+          Write-Output 'Hello everyone from pwsh'
+```
+
+If you are using action, do not forget to tag the action version via `@` notation (e.g. `docker/login-action@v2`). You can use any version tag, branch name or lock it down to a commit hash, but that is difficult to read by humans and identify the version used.
+
+### Clone repository with step that uses actions/checkout
+
+By default, the repository is never cloned/checkout to the workspace of the runner. That must be done explicitly via a step that uses [actions/checkout](https://github.com/actions/checkout) action.
+
+```yaml
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+```
+
 ### Triggers
 
 When a workflow is executed.
@@ -235,42 +271,6 @@ GitHub docs:
 
 - [Triggering a workflow](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow)
 - [Events that trigger workflows](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows) contains a list of all triggers
-
-### Jobs
-
-Each job is executed on a single runner. If your job is running in GitHub managed runners, each runner runs exactly one job, and the runner virtual machine is removed after the job is finished.
-
-### Steps
-
-Step can either execute a shell script in given shell, which you must specify. Pr use an existing action and supply its inputs, if it has any.
-
-```yaml
-jobs:
-  my-job:
-    # ...
-    steps:
-      - name: First step # name is optional
-        shell: bash # bash, sh, pwsh, python, cmd
-        run: |
-          echo "Hello everyone from bash"
-
-      - name: Second step with powershell
-        shell: pwsh
-        run: |
-          Write-Output 'Hello everyone from pwsh'
-```
-
-If you are using action, do not forget to tag the action version via `@` notation (e.g. `docker/login-action@v2`). You can use any version tag, branch name or lock it down to a commit hash, but that is difficult to read by humans and identify the version used.
-
-### actions/checkout
-
-If you want to work with the repository content in a job, you must always use the `actions/checkout` action in one of first steps (does not need to exactly first) to clone the repository.
-
-```yaml
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
-```
 
 ### Needs
 
