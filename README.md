@@ -714,6 +714,14 @@ steps:
       echo "Nginx available on 127.0.0.1:${{ job.services.nginx.ports['80'] }}"
 ```
 
+## Environments
+
+GitHub offers environments. Environments support environment-specific environment variables and secrets (mentioned before at [Environment variables](#environment-variables) and [Secrets](#secrets)).
+
+Environment also provides a UI element on repository's homepage (right sidebar, _Deployments_. _Deployments_ belong to environments).
+
+Environments are often integrated with third-party services such as Vercel or Cloudflare Pages, to show a deployment status.
+
 ## Reusable workflows
 
 You do not have to repeat yourself for every case, you can build reusable workflows, that can be trigger as jobs in other workflows.
