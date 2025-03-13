@@ -682,6 +682,9 @@ services:
   nginx:
     image: nginx
     # Map port 8080 on the Docker host to port 80 on the nginx container
+    credentials:
+      username: ${{ secrets.SERVICES_USERNAME }} # must be provided manually in Secrets
+      password: ${{ secrets.SERVICES_PASSWORD }} # must be provided manually in Secrets
     ports:
       - 8080:80
   redis:
