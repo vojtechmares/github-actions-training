@@ -180,7 +180,7 @@ Common cases are:
 
 - **Issue**
 
-  ```yaml
+    ```yaml
     name: On issue
 
     on:
