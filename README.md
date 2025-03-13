@@ -123,6 +123,13 @@ Each job is composed of multiple steps. A job can have if condition to further c
 
 Each step can also have its if condition.
 
+## Visual Studio Code extensions
+
+- [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=github.vscode-github-actions) by GitHub: Provides intellisense and sidebar plugin to see Workflow runs
+- [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) by RedHat: correct YAML syntax highlighting
+
+Or see and use [`.vscode/extensions.json`](/.vscode/extensions.json).
+
 ## Writing workflows
 
 ### Triggers
@@ -811,13 +818,6 @@ For testing Workflows, you do not have many options. Either run them locally via
 ### Running workflows locally
 
 [github.com/nektos/act](https://github.com/nektos/act) is an open-source and lightweight program that can run your Workflows locally. Which tremendously simplifies testing. Instead of hacking the workflow triggers and waiting for it to finish, run the workflows locally without commit spam in the repository.
-
-## Visual Studio Code extensions
-
-- [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=github.vscode-github-actions) by GitHub: Provides intellisense and sidebar plugin to see Workflow runs
-- [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) by RedHat: correct YAML syntax highlighting
-
-Or see and use [`.vscode/extensions.json`](/.vscode/extensions.json).
 
 ## Keeping actions up to date
 
