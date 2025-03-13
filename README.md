@@ -646,6 +646,8 @@ steps:
     run: echo "Hello world" && false
 ```
 
+Continue on error behavior can (and often is) adopted when having a company (GitHub Organization) policy. When a new policy is introduced, the compliance job running on every single repository has the new check will have a grace period where the job/workflow has `continue-on-error` set to `true`, so everyone can see if they are compliant yet or not, but it does not block anyone's work. After the grace period is over, everyone should be compliant with the new policy and should not cause issues.
+
 ### Machine on which job is running
 
 To select a machine to run the job on, use the `runs-on`.
