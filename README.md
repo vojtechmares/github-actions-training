@@ -274,6 +274,22 @@ jobs:
       - run: echo "Hello world from second job"
 ```
 
+### Contexts
+
+Contexts are groups of related variables, that you can use in your workflows to write ifs, reference environment variables, secrets, environments, or get metadata from runner.
+
+Usually used contexts are:
+
+- **github** - references to Git ref, triggering event, etc.
+- **env** - environment variables, can also be referenced with classic shell notation `$ENV_VAR`
+- **secrets** - only way to access secrets
+
+For more information, see [docs](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs).
+
+**Using contexts**:
+
+Contexts and other GitHub Actions built-in function are accessible inside the `${{ env.MY_VAR }}` brackets. That way it is clearly distinguishable from regular shell variables. Also with GitHub Actions Visual Studio Code extension, you get syntax highlighting and intellisense. For more examples, see [Conditionals](#composite-actions).
+
 ### Conditionals
 
 Each job and/or step can contain an `if` statement, to further control execution.
