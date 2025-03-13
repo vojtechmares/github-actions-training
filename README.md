@@ -311,6 +311,62 @@ For more information, see [docs](https://docs.github.com/en/actions/writing-work
 
 Contexts and other GitHub Actions built-in function are accessible inside the `${{ env.MY_VAR }}` brackets. That way it is clearly distinguishable from regular shell variables. Also with GitHub Actions Visual Studio Code extension, you get syntax highlighting and intellisense. For more examples, see [Conditionals](#composite-actions).
 
+### Builtin functions
+
+GitHub Actions have several builtin functions, that can be used inside _expressions_. Expression is `${{ <expression> }}` block. An expression can call a function, use logical operator to return a boolean value or filter objects.
+
+**Functions**:
+
+- `contains( search, item )`: returns `true` if `search` contains `item`
+- `startsWith( searchString, searchValue )`: returns `true` if `searchString` starts with `searchValue`, aka prefix
+- `endsWith( searchString, searchValue )`: returns `true` if `searchString` ends with `searchValue`, aka suffix
+- `format( string, replaceValue0, replaceValue1, ..., replaceValueN)`: replaces values in the `string`, with the variable `replaceValueN`
+- `join( array, optionalSeparator )`: The value for array can be an array or a string. All values in array are concatenated into a string, default separator is `,`
+- `toJSON(value)`: returns a pretty-print JSON representation of `value`, useful for debugging of [Contexts](#contexts)
+- `fromJSON(value)`: returns a JSON object or JSON data type for value
+- `hashFiles(path)`: returns a single hash for the set of files that matches the `path` pattern, you can provide a single path pattern or multiple path patterns separated by commas
+
+**Logical operators**:
+
+- `( )`: logical group
+- `[ ]`: index (array access)
+- `.`: property de-reference
+- `!`: not
+- `<`: less than
+- `>`: more than
+- `==`: equal
+- `!=`: not equal
+- `>=`: more or equal
+- `<=`: less or equal
+- `&&`: and
+- `||`: or
+
+**Filtering objects**:
+
+Example object:
+
+```json
+[
+  { "name": "apple", "quantity": 1 },
+  { "name": "orange", "quantity": 2 },
+  { "name": "pear", "quantity": 1 }
+]
+```
+
+Filter:
+
+```text
+fruits.*.name
+```
+
+Output:
+
+```json
+[ "apple", "orange", "pear" ]
+```
+
+For more information, see [docs](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/evaluate-expressions-in-workflows-and-actions).
+
 ### Conditionals
 
 Each job and/or step can contain an `if` statement, to further control execution.
