@@ -660,6 +660,8 @@ The `runs-on` directive is also used to select self-hosted runners instead of th
 runs-on: [self-hosted, linux, x64, gpu]
 ```
 
+When running on GitHub managed runners, most often jobs are using `runs-on: ubuntu-latest`, but if you want increased stability and greater control, consider using `runs-on: ubuntu-24.04` (or any Ubuntu LTS version supported by GitHub Runners).
+
 ### Strategy
 
 > Use `jobs.<job_id>.strategy` to use a matrix strategy for your jobs. A matrix strategy lets you use variables in a single job definition to automatically create multiple job runs that are based on the combinations of the variables. For example, you can use a matrix strategy to test your code in multiple versions of a language or on multiple operating systems.
