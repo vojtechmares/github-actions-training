@@ -513,10 +513,15 @@ concurrency:
 
 ### Environment variables
 
+Environment variables for Organizations are located at: _[Organization] Settings -> Secrets and variables (left sidebar) -> Actions (dropdown menu)_.
+
+Environment variables for Repositories are located at: _[Repository] Settings > Secrets and variables (left sidebar) > Actions (dropdown)_.
+
 Environment variables are for non-secret values only, they can be defined at many levels:
 
 - **Organization**: environment variable available for all repositories and workflows within the organization
 - **Repository**: environment variables defined in settings of a repository
+- **Repository Environment**: each repository can have environments for deployments and environment variables can be environment-specific and available only to jobs/steps that are deploying to the environment
 - **Workflow**: environment variables defined under `.defaults.env` available for all jobs in a workflow
 - **Job**: environment variable defined per job `.jobs.<job_id>.env`
 - **Step**: environment variable defined per step `.jobs.<job_id>.steps[*].env`
@@ -542,15 +547,27 @@ Environment variables are for non-secret values only, they can be defined at man
               echo $HELLO # prints "world"
     ```
 
+**Overrides**:
+
+Secrets have a certain hierarchy when overriding with multiple configuration sources, this hierarchy goes as follows: _Dynamic environment variable > Step environment variable > Job environment variable > Workflow environment variable > Repository Environment environment variable > Repository environment variable > Organization environment variable_.
+
 ### Secrets
 
 Secrets are special values which are securely stored in GitHub and redacted from logs. Making it harder to leak them.
+
+Secrets for Organizations are located at: _[Organization] Settings -> Secrets and variables (left sidebar) -> Actions (dropdown menu)_.
+
+Secrets for Repositories are located at: _[Repository] Settings > Secrets and variables (left sidebar) > Actions (dropdown)_.
 
 There are few options, where a secret can be defined:
 
 - **Organization**: each GitHub organization can have its secrets, which are available to all repositories under the organization
 - **Repository**: secrets available only for a single repository (do not forget that secrets can be passed to workflows even when workflow resides in different repository)
-- **Environment**: each repository can have environments for deployments and secrets can be environment-specific and available only to jobs/steps that are deploying to the environment
+- **Repository Environment**: each repository can have environments for deployments and secrets can be environment-specific and available only to jobs/steps that are deploying to the environment
+
+**Overrides**:
+
+Secrets have a certain hierarchy when overriding with multiple configuration sources, this hierarchy goes as follows: _Repository Environment secret > Repository secret > Organization secret_.
 
 ### GitHub token (`secrets.GITHUB_TOKEN`)
 
