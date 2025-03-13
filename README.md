@@ -164,6 +164,20 @@ Common cases are:
           - main # only on PRs that target 'main' branch
     ```
 
+- **Schedule** (cron)
+
+    ```yaml
+    name: On schedule
+
+    on:
+      schedule:
+        # * is a special character in YAML so you have to quote this string
+        - cron: '30 5,17 * * *'
+        # Multiple cron expressions can be supplied
+        - cron: '30 5 * * 1,3'
+        - cron: '30 5 * * 2,4'
+    ```
+
 - **Issue**
 
   ```yaml
