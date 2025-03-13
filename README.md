@@ -652,7 +652,7 @@ Multiple matrix (multi-dimensional):
 jobs:
   example_matrix:
     strategy:
-      matrix:
+      matrix: # this matrix will generate 9 jobs
         version: [10, 12, 14]
         os: [ubuntu-latest, windows-latest]
 ```
@@ -665,7 +665,7 @@ _This is commonly used for testing on multiple versions of runtime, like Node.js
 jobs:
   example_matrix:
     strategy:
-      matrix:
+      matrix: # this matrix generates 4 jobs
         version: [18, 20, 22, 23] # last 3 LTS releases and latest stable
     steps:
       - uses: actions/setup-node@v4
