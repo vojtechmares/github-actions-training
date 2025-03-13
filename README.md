@@ -666,6 +666,8 @@ When running on GitHub managed runners, most often jobs are using `runs-on: ubun
 
 > Use `jobs.<job_id>.strategy` to use a matrix strategy for your jobs. A matrix strategy lets you use variables in a single job definition to automatically create multiple job runs that are based on the combinations of the variables. For example, you can use a matrix strategy to test your code in multiple versions of a language or on multiple operating systems.
 
+A common use-case for strategy matrix is testing your program on multiple runtime versions, different platforms (macOS, Windows, Linux), and CPU architecture (x86_64, aarch64,...)
+
 Multiple matrix (multi-dimensional):
 
 ```yaml
