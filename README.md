@@ -1033,6 +1033,10 @@ By default, there is no need to configure Renovate, the default config automatic
 
 For more information, see Renovate docs: [Automated Dependency Updates for GitHub Actions](https://docs.renovatebot.com/modules/manager/github-actions/).
 
+## GitHub Enterprise Server considerations
+
+GitHub Actions as a feature is available on the Enterprise Server, but in order to use GitHub.com actions, you have to setup GitHub Connect. That your Enterprise Sever can browse and use actions published on GitHub.com. If not, you are left to write actions on your own.
+
 ## Thank you! & Questions?
 
 That's all, thank you for your attention.
