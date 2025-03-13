@@ -992,6 +992,41 @@ This way you can avoid some mistakes.
 
 It is also very useful to lint actions in workflows, when you are building internal composable Actions and Workflows.
 
+**Install on macOS**:
+
+```bash
+brew install actionlint
+```
+
+**Install on Windows**:
+
+```cmd
+# chocolatey
+choco install actionlint
+
+# scoop
+scoop install actionlint
+
+# winget
+winget install actionlint
+```
+
+**Install on Linux**:
+
+```bash
+# Arch
+pacman -S actionlint
+
+# Nix
+## NixOS
+nix-env -iA nixos.actionlint
+
+## Non-NixOS
+nix-env -iA nixpkgs.actionlint
+```
+
+Or download prebuilt binaries for your platform from the [release page](https://github.com/rhysd/actionlint/releases).
+
 ## Testing
 
 ### Testing actions
